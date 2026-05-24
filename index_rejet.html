@@ -3,16 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Liste de chansons des Cactus Électriques</title>
+  <title>Liste des chansons retirer de la liste</title>
   <style>
     body {
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #020403, #000000 70%);
-  color: #d8ffe3;
-  text-align: center;
-  margin: 40px;
-  overflow-x: hidden;
-}
+      font-family: Arial;
+      background: radial-gradient(circle at top, #1e1e2f, #0a0a0f);
+      color: #fff;
+      text-align: center;
+      margin: 40px;
+    }
 
     .header {
       height: 120px;
@@ -53,43 +52,31 @@
       font-weight: bold;
     }
 
-   /* HEADER NEON */
-.header {
-  height: 140px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #00ff99;
-  border-radius: 20px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 0 20px #00ff99,
-    inset 0 0 20px #00ff9944;
-}
+    .header p {
+      margin-top: 10px;
+      color: #ddd;
+      font-size: 16px;
+    }
 
-   /* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 25px;
-  max-width: 1100px;
-  margin: auto;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-    /* Glow background subtil */
-body::before {
-  content: "";
-  position: fixed;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, #00ff9955, transparent 70%);
-  top: -200px;
-  left: -200px;
-  filter: blur(120px);
-  z-index: -1;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #3377c555, transparent);
+      top: -100px;
+      left: -100px;
+      filter: blur(100px);
+      z-index: -1;
+    }
 
     @keyframes fadeIn {
       to {
@@ -105,124 +92,100 @@ body::before {
       text-transform: uppercase;
       margin: 0;
     }
-.logo span {
-  background: linear-gradient(90deg, #00ff99, #00ffaa, #66ffcc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-}
-  
- /* Glow intense */
-.logo span::after {
-  content: "Les Cactus";
-  position: absolute;
-  left: 0;
-  top: 0;
-  filter: blur(20px);
-  opacity: 0.8;
-  background: linear-gradient(90deg, #00ff99, #00ffaa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-   /* TAGLINE */
-.tagline {
-  color: #88ffcc;
-  opacity: 0.7;
-}
+    .logo span {
+      background: linear-gradient(90deg, #1db954, #1ed760, #00c3ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
 
-   /* CARTES */
-.card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid #00ff9955;
-  transition: 0.3s;
-}
+    /* Effet glow */
+    .logo span::after {
+      content: "Ça pique";
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      filter: blur(12px);
+      opacity: 0.7;
+      background: linear-gradient(90deg, #1db954, #00c3ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-   .card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: 0.3s;
-}
+    /* Sous-titre stylé */
+    .tagline {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 14px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
 
-   .card::after {
-  content: "▶";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
-  background: #00ff99;
-  color: black;
-  border-radius: 50%;
-  padding: 12px 16px;
-  font-size: 18px;
-  opacity: 0;
-  box-shadow: 0 0 15px #00ff99;
-  transition: 0.3s;
-}
+    .card {
+      position: relative;
+      overflow: hidden;
+    }
 
-    .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px #00ff99aa;
-}
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: 0.5s;
+    }
 
- .card:hover::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
+    .card::after {
+      content: "▶";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: #1db954;
+      color: black;
+      border-radius: 50%;
+      padding: 12px 16px;
+      font-size: 18px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
 
-.card:hover::before {
-  opacity: 1;
-}
-  .card img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  filter: brightness(0.85) contrast(1.1);
-}
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
 
     .card p {
-  margin: 10px;
-  font-size: 14px;
-  color: #ccffe6;
-}
+      margin: 10px;
+    }
 
-  .lyrics {
-  margin-top: 30px;
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 15px;
-  max-width: 700px;
-  margin: auto;
-  border: 1px solid #00ff9955;
-  box-shadow: inset 0 0 15px #00ff9944;
-  white-space: pre-line;
-}
-#backToTop {
-  margin-top: 20px;
-  padding: 12px 20px;
-  background: #00ff99;
-  border: none;
-  border-radius: 30px;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  display: none;
-  box-shadow: 0 0 10px #00ff99;
-}
-
-#backToTop:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #00ff99;
-}
-
-
+    .lyrics {
+      margin-top: 30px;
+      padding: 20px;
+      background: #222;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      white-space: pre-line;
+    }
   </style>
 </head>
 
@@ -240,22 +203,14 @@ body::before {
   <div class="grid" id="grid"></div><br>
   <div id="lyrics" class="lyrics"></div>
   <button id="backToTop">⬆ Retour en haut</button>
-  <a href="index_rejet.html" style="
-  position: fixed;
-  top: 5px;
-  left: 8px;
-  color: #aaa;
-  font-size: 10px;
-  text-decoration: none;
-  opacity: 0.6;">Rejet</a>
-  <a href="index_sepul.html" style="
+  <a href="index.html" style="
   position: fixed;
   top: 5px;
   right: 8px;
   color: #aaa;
   font-size: 10px;
   text-decoration: none;
-  opacity: 0.6;">...</a>
+  opacity: 0.6;">Principal</a>
   <script>
     const backToTopBtn = document.getElementById("backToTop");
 
@@ -264,42 +219,42 @@ body::before {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     const chansons = [
-      { id: "chanson1", titre: "Linoleum", image: "a.jpg" },
-      { id: "chanson2", titre: "Leave It Alone", image: "b.jpg" },
-      { id: "chanson3", titre: "Dammit", image: "c.jpg" },
-      { id: "chanson4", titre: "Together for the Kids", image: "d.jpg" },
-      { id: "chanson5", titre: "Josie", image: "e.jpg" },
-      { id: "chanson6", titre: "Disconnected", image: "f.jpg" },
-      { id: "chanson7", titre: "Justified Black Eye", image: "g.jpg" },
-      { id: "chanson8", titre: "I Want to be Wrong", image: "h.jpg" },
-      { id: "chanson9", titre: "Fuck Authority", image: "i.jpg" },
-      { id: "chanson10", titre: "Don't Call Me White", image: "j.jpg" },
-      { id: "chanson11", titre: "Dig Up Her Bones", image: "k.jpg" },
-      { id: "chanson12", titre: "Salvation", image: "l.jpg" },
-      { id: "chanson13", titre: "Ruby Soho", image: "m.jpg" },
-      { id: "chanson14", titre: "Time Bomb", image: "n.jpg" },
-      { id: "chanson15", titre: "Hero", image: "o.jpg" },
-      { id: "chanson16", titre: "Machinehead", image: "p.jpg" },
-      { id: "chanson17", titre: "In Bloom", image: "q.jpg" },
-      { id: "chanson18", titre: "I'm Not Afraid", image: "r.jpg" },
-      { id: "chanson19", titre: "Die Die, My Darling", image: "s.jpg" },
-      { id: "chanson20", titre: "Mouth for War", image: "t.jpg" },
-      { id: "chanson21", titre: "Unknown Road", image: "u.jpg" },
-      { id: "chanson22", titre: "This is the End", image: "v.jpg" },
-      { id: "chanson23", titre: "Ready to Fall", image: "w.jpg" },
-      { id: "chanson24", titre: "American Jesus", image: "x.jpg" },
-      { id: "chanson25", titre: "Stickin In my Eye", image: "y.jpg" },
-      { id: "chanson26", titre: "Los Angeles is Burning", image: "z.jpg" },
+      { id: "chanson1", titre: "", image: "ra.jpg" },
+      { id: "chanson2", titre: "", image: "rb.jpg" },
+      { id: "chanson3", titre: "", image: "rc.jpg" },
+      { id: "chanson4", titre: "", image: "rd.jpg" },
+      { id: "chanson5", titre: "", image: "re.jpg" },
+      { id: "chanson6", titre: "No Cigar", image: "rf.jpg" },
+      { id: "chanson7", titre: "", image: "rg.jpg" },
+      { id: "chanson8", titre: "", image: "rh.jpg" },
+      { id: "chanson9", titre: "", image: "ri.jpg" },
+      { id: "chanson10", titre: "", image: "rj.jpg" },
+      { id: "chanson11", titre: "", image: "rk.jpg" },
+      { id: "chanson12", titre: "", image: "rl.jpg" },
+      { id: "chanson13", titre: "", image: "rm.jpg" },
+      { id: "chanson14", titre: "", image: "rn.jpg" },
+      { id: "chanson15", titre: "", image: "ro.jpg" },
+      { id: "chanson16", titre: "", image: "rp.jpg" },
+      { id: "chanson17", titre: "", image: "rq.jpg" },
+      { id: "chanson18", titre: "", image: "rr.jpg" },
+      { id: "chanson19", titre: "All the Small Things", image: "rs.jpg" },
+      { id: "chanson20", titre: "", image: "rt.jpg" },
+      { id: "chanson21", titre: "Gone Away", image: "ru.jpg" },
+      { id: "chanson22", titre: "", image: "rv.jpg" },
+      { id: "chanson23", titre: "", image: "rw.jpg" },
+      { id: "chanson24", titre: "Red Flag", image: "rx.jpg" },
+      { id: "chanson25", titre: "", image: "ry.jpg" },
+      { id: "chanson26", titre: "", image: "rz.jpg" },
 
     ];
 
     const paroles = {
-      chanson1: "Linoleum\n\nPossessions never meant anything to me\nI'm not crazy\nWell that's not true, I've got a bed\nAnd a guitar, and a dog names Bob who pisses on my floor\nThat's right, I've got a floor\nSo what? So what? So what?\nI've got pockets full of Kleenex and lint and holes\nWhere everything important to me\nJust seems to fall right down my leg\nAnd onto the floor\nMy closest friend linoleum\nLinoleum\nSupports my head\nGives me something to believe\nThat's me on the beachside, combin' the sand\nMetal meter in my hand\nSportin' a pocket full of change\nThat's me in the street with a violin under my chin\nPlayin' with a grin\nSingin' gibberish\nThat's me on the back of the bus\nThat's me in the cell\nThat's me inside your head\nThat's me inside your head\nThat's me inside your head",
-      chanson2: "Leave It Alone\n\nBreathe ever so soft\nWe wouldn't wanna break the eggs as we walk\nNever alone, cautious, afraid\nI hear the voice of reason on the P.A.\n\nLeave it alone, follow the grain\nWe couldn't stop the irresistible force\nLeave it the same, change with the leaves\nBringing in the sheaves, bringing in the old\nLeave it alone\n\nDa na na na na na na na naa\nDa na na na na na na na naa\nDa na na na na na na na naa\nDa na na na na na na na naa\n\nBreathe, ever so slight\nWe couldn't take away your God given right\nLeave it alone, heal and stay\nRoll over and shake and beg for the bone\nLeave it alone\n\nDa na na na na na na na naa\nDa na na na na na na na naa\nDa na na na na na na na naa\nDa na na na na na na na naa",
-      chanson3: "Dammit\n\nIt's alright to tell me \nWhat you think about me \nI won't try to argue \nOr hold it against you \nI know that you're leaving \nYou must have your reasons \nThe season is calling \nYour pictures are falling down\n \nThe steps that I retrace \nThe sad look on your face \nThe timing and structure \nDid you hear he fucked her? \nA day late, a buck short \nI'm writing the report \nOn losing and failing \nWhen I move, I'm flailing now \n\nAnd it's happened once again \nI'll turn to a friend \nSomeone that understands \nAnd sees through the master plan \nBut everybody's gone \nAnd I've been here for too long \nTo face this on my own\n \nWell, I guess this is growing up\n \nWell, I guess this is growing up\n \nAnd maybe I'll see you \nAt a movie sneak preview \nYou'll show up and walk by \nOn the arm of that guy \nAnd I'll smile and you'll wave \nWe'll pretend it's okay \nThis charade, it won't last \nWhen he's gone, I won't come back \n\nAnd it'll happen once again \nYou'll turn to a friend \nSomeone that understands \nAnd sees through the master plan \nBut everybody's gone \nAnd you've been here for too long \nTo face this on your own \n\nWell, I guess this is growing up (x6)",
+      chanson1: "",
+      chanson2: "",
+      chanson3: "",
       chanson4: "Together for the Kids\n\nIt's hard to wake up\nWhen the shades have been pulled shut\nThis house is haunted\nIt's so pathetic, it makes no sense at all\n\nI'm ripe with things to say\nThe words rot and fall away\nWhat stupid poem, could fix this home? \nI'd read it every day\n\nSo here's your holiday\nHope you enjoy it this time\nYou gave it all away\nIt was mine\nSo when you're dead and gone\nWill you remember this night? \n20 years now lost\nIt's not right\n\nTheir anger hurts my ears\nBeen running strong for seven years\nRather than fix the problems\nThey never solve them, it makes no sense at all\n\nI see them everyday\nWe get along, so why can't they? \nIf this is what he wants, and it's what she wants\nThen why is there so much pain? \n\nSo here's your holiday\nHope you enjoy it this time\nYou gave it all away\nIt was mine\nSo when you're dead and gone\nWill you remember this night? \n20 years now lost\nIt's not right\n\nSo here's your holiday\nHope you enjoy it this time\nYou gave it all away\nIt was mine\nSo when you're dead and gone\nWill you remember this night? \n20 years now lost\n\nIt's not right (x4)",
       chanson5: "Josie\n\nYeah, my girlfriend \nTakes me home when I'm too drunk to drive \nAnd she doesn't get all jealous \nWhen I hang out with the guys \nShe laughs at my dumb jokes when no one does \nShe brings me Mexican food from Sombrero's just because \nYeah, just because \n\nAnd my girlfriend \nLikes UL and DHC \nAnd she's so smart and independent \nI don't think she needs me \nQuite half as much as I know I need her \nI wonder why there's not another \nGuy, that she'd prefer \n\nAnd when I feel like giving up \nLike my world is falling down \nI show up at 3:00 a.m. \nShe's still up watching Vacation \nAnd I see her pretty face \nIt takes me away to a better place and \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \n\nYeah, my girlfriend \nTakes collect calls from the road \nAnd it doesn't seem to matter \nThat I'm lacking in the bulge \nShe laughs at my dumb jokes when no one does \nShe brings me Mexican food from Sombrero's just because \n\nAnd when I feel like giving up \nLike my world is falling down \nI show up at 3:00 a.m. \nShe's still up watching Vacation \nAnd I see her pretty face \nIt takes me away to a better place and \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine (x4)",
-      chanson6: "Disconnected\n\nYou don't know a thing about me\nIs there something that you should know?\nI can tell you what you want to hear\nLet your inhibitions just go, go\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you\n\nTrust is something that comes easy\nWhen you've never been a victim\nLies and promises and words are said\nIt's your decision to accept them, accept them\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you, to you\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you\nSomething that may never come to you\n\nSomething that may never come\nMay never come, may never come, may never come\nMay never come, never come, never come to you",
+      chanson6: "No Cigar\n\nTell us where you're from, what you want to become \nAnd we'll say if you're OK \nWhere did you go to school? \nRight answer and you're cool \nYeah, you're the kid the whole day \nYou got a sticker in your face, information about the case \nSo you know your potential \nDon't think you can extend \nDon't think you can extend, just comprehend \nBut I don't wanna hear it, no it's more than I accept \n\n'Cause, I don't care where I belong no more \nWhat we share or not I will ignore \nI will ignore \n\nWe will shut you out \nWe'll put you in doubt if you think that you're special \nWe'll tell you who you are \nWe'll tell you that you're close but no cigar \nBut, I don't wanna hear it (I don't wanna hear it) \nNo it's more than I accept \n\n'Cause I don't care where I belong no more \nWhat we share or not I will ignore \nAnd I won't waste my time fitting in \n'Cause I don't think contrast is a sin \n \nWhat they say is go back where you came from \nThey'll tell you that but, I don't wanna hear \nNo, I don't wanna hear. No, I don't wanna hear it \nNo, it's more than I accept \n \n'Cause I don't care where I belong no more \nWhat we share or not I will ignore \nAnd I won't waste my time fitting in \n'Cause I don't think contrast is a sin \nNo, it's not a sin",
       chanson7: "Justified Black Eye\n\nShe was confused and abused in this life\nEmotional and violent moments\nSeemed to take the longest time\nEvery single knockout drag-out fight they ever had\nApologies and dignity denied\n\nHe starts to laugh\nHe starts to lie\nWith suddenly psychotic eyes\nEvery night she cried herself to sleep\nShe didn't recognize\nHer own face in the mirror\nBlack and blue\nSo afraid, intimidation, like a child she hides away\nHe would always try to justify what wasn't true\n\nJustified black eye\n\nTaken for granted\nShe sleeps by the phone\nWaiting for a call from him\nBut it seems he's never coming home\n14 beers later he is there without an answer\nOnce again she questions his lies\nHe goes to bed with no reply\nTomorrow morning different story and he'll be a different guy\nHe'll justify her black eye with another lie\n\nShe packs her bags in great temptation\nHe's on his knees\nAgain he cries\nA hug and a kiss and I don't know why\nAs a tear drops from her swollen eye\nApologies until tonight and another justified black eye\n\nJustified black eye",
       chanson8: "I Want to be Wrong\n\nLet me introduce myself, my name is no concern \n The room is filled with superficial voices \n As the smoke clears I can see one hundred little lies\nRacing to the finish for a consolation prize \n\n I want to be wrong \nI wish that I was uncertain just like yesterday\nThis is not who I am, been planning my escape\nSo long now that my map looks like a maze\n\nAlways on the dark side of a pessimistic moon\n Or burning in the sun of what they're saying \nIf you have the foresight can you read between the lines?\nFinger two and four inviting fingers one and five \nTo be in this song, it's nothing I can shut off \nBut I think it's my place \nTo let you know I know that all your plans are fake \nAnd what you give me I could never take \n\nAre you confusing me with someone else you hardly even know? \nI'm sitting here observing and more often I am learning \nThat you are an artist and this is your show... so sing it \n\nI want to be wrong but what did i really think\nThat this could become real?\nNow writing in cliches to learn from my mistakes\nBut how much of you could anyone take?",
       chanson9: "Fuck Authority\n\nSomeday you gotta find another way\nYou better right your mind and live by what you say\nToday is just another day\nUnless you set your sights and try to find a way\n\nI say fuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nAnd we're never ever gonna stop, stop trying\nStop trying, stop trying, stop trying\n\nYou know the time is right to take control\nWe got to take offense against the status quo\nNo way, not gonna stand for it today\nFight for your rights, it's time we had our say\n\nI say fuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nWe're sick and tired of relentless lying\nDestroy, enjoy, your fuckin' world is our new toy\nDominate, eliminate\nYou're gonna feel the wrath, wrath of hate\n\nFuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nAnd we're never ever gonna stop, stop trying\nStop trying, stop trying, stop trying",
@@ -311,13 +266,13 @@ body::before {
       chanson15: "Hero\n\nToo alarming now to talk about \nTake your pictures down and shake it out \nTruth or consequence, say it aloud \nUse that evidence, race it around \n \nThere goes my hero \nWatch him as he goes \nThere goes my hero \nHe's ordinary\n\nDon't the best of them bleed it out? \nWhile the rest of them peter out \nTruth or consequence, say it aloud \nUse that evidence, race it around \n\nThere goes my hero \nWatch him as he goes \nThere goes my hero \nHe's ordinary \n\nKudos, my hero, leavin' all the best \nYou know my hero, the one that's on \n\nThere goes my hero \nWatch him as he goes \nThere goes my hero \nHe's ordinary \n\nThere goes my hero \nWatch him as he goes \nThere goes my hero \nHe's ordinary",
       chanson16: "Machinehead\n\nBreathe in, breathe out\nBreathe in, breathe out\nBreathe in\nBreathe in, breathe out\nBreathe in, breathe out\nBreathe in\n\nTied to a wheel, my fingers got to feel\nBleeding through a tourniquet smile\nI spin on a whim, I slide to the right\nI felt you like electric light\nFor our love, for our fear\nFor our rise against the years and years and years\n\nGot a machinehead, it's better than the rest\nGreen to red, machinehead\nGot a machinehead, it's better than the rest\nGreen to red\n\nAnd I walk from my machine\nI walk from my machine\n\nBreathe in, breathe out\nBreathe in, breathe out\nBreathe in\n\nDeaf, dumb, dirty\nStarted to deserve this\nLeaning on my conscience wall\nBlood is like wine\nUnconscious all the time\nIf I had it all again I'd change it all\n\nGot a machinehead, it's better than the rest\nGreen to red, machinehead\nGot a machinehead, it's better than the rest\nGreen to red, yeah\n\nI walk from my machine\nI walk from my machine\nI've seen the best minds of my generation\nIt's a foul ball\n\nBreathe in, breathe out\nBreathe in, breathe out\nBreathe in, \nbreathe in, breathe in\n\nGot a machinehead, it's better than the rest\nGreen to red, machinehead\nGot a machinehead, it's better than the rest\nGreen to red\n\nBetter than the rest\nBetter than the rest\nMachinehead\n\nAnd I walk from my machine\nAnd I walk from my machine\n",
       chanson17: "In Bloom\n\nSell the kids for food\nWeather changes moods\nSpring is here again\nReproductive glands\n\nHe's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nAnd I say he's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nAnd I say yeah\n\nWe can have some more\nNature is a whore\nBruises on the fruit\nTender age in bloom\n\nHe's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nAnd I say he's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nAnd I say yeah\n\nHe's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nAnd I say he's the one\nWho likes all our pretty songs\nAnd he likes to sing along\nAnd he likes to shoot his gun\nBut he knows not what it means\nKnows not what it means\nKnows not what it means\nKnows not what it means\nAnd I say yeah",
-      chanson18: "I'm Not Afraid\n\nI didn't want a second chance\nNow that's exactly where I am\nBack where I didn't want to be\nBack where I knew you'd find me out\n\nI've never been afraid of you\nI never will admit the truth\nI know there's something I can do\n\nI'm not afraid to face myself\nBut is it me or something else?\nMakes me exactly what I am\nThat's something I will always doubt\n\nI've never been afraid of you\nI never will admit the truth\nI know there's something I can do\n\nI've never been afraid of you\nI never will admit the truth\nI know there's something I can do\n\n",
-      chanson19: "Die, Die, My Darling\n\nDie, die, die my darling\nDon't utter a single word\nDie, die, die my darling\nJust shut your pretty eyes\n\nI'll be seeing you again\nYeah, I'll be seeing you in hell\n\nSo don't cry to me, oh baby\nYour future's in an oblong box\nDon't cry to me, oh baby\nYou should have seen it a comin' on\n\nDon't cry to me, oh baby\nHad to know it was in your card\nDon't cry to me, oh baby\nDead end goal, for a dead end girl\n\nDon't cry to me, oh baby\nAnd now your life drains on that floor\nDon't cry to me oh baby\n\nDie, die, die my darling\nDon't utter a single word\nDie, die, die my darling\nJust shut your pretty mouth\n\nI'll be seeing you again, yeh yeah\nI'll be seeing you in hell\n\nDon't cry to me, oh baby\nYour future's in an oblong box\nDon't cry to me, oh baby\nYou should have seen it a-comin' on\n\nDon't cry to me, oh baby\nHad to know it was in your card\nDon't cry to me, oh baby\nDead-end goal for a dead-end girl\n\nDon't cry to me, oh baby\nNow your life drains on that floor\nDon't cry to me, oh baby\n\nDie, die, die my darling\nDon't utter a single word\nDie, die, die my darling\nShut your pretty mouth\n\nI'll be seeing you again\nI'll be seeing you in hell\n\nDie, die, die\nDie, die, die\nDie, die, die\nDie",
+      chanson18: "I'm Not Afraid\n\nI didn't want a second chance\nNow that's exactly where I am\nBack where I didn't want to be\nBack where I knew you'd find me out\n\nI've never been afraid of you\nI never will admit the truth\nIknowthere's something I can do\n\nI'm not afraid to face myself\nBut is it me or something else?\nMakes me exactly what I am\nThat's something I will always doubt\n\nI've never been afraid of you\nI never will admit the truth\nI know there's something I can do\n\nI've never been afraid of you\nI never will admit the truth\nI know there's something I can do\n\n",
+      chanson19: "All the Small Things\n\nAll the small things\nTrue care, truth brings\nI'll take one lift\nYour ride, best trip\n\nAlways, I know\nYou'll be at my show\nWatching, waiting\nCommiserating\n\nSay it ain't so, I will not go\nTurn the lights off, carry me home\n\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\n\nLate night, come home\nWork sucks, I know\nShe left me roses by the stairs\nSurprises let me know she cares\n\nJust say it ain't so, I will not go\nTurn the lights off, carry me home\n\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\nNa-na, na-na, na-na, na-na, na, na\n\nSay it ain't so, I will not go\nTurn the lights off, carry me home\nKeep your head still, I'll be your thrill\nThe night will go on, my little windmill\n\nSay it ain't so, I will not go\nTurn lights off, carry me home\nKeep your head still, I'll be your thrill\nThe night will go on, the night will go on, my little windmill",
       chanson20: "Mouth for War\n\nREVENGE\nI'm screaming revenge again\nWRONG\nI've been wrong for far too long\nBeen constantly so frustrated\nI've moved mountains with less\nWhen I channel my hate to productive\nI don't find it hard to impress\n\nBones in traction\nHands break to hone raw energy\nBold and disastrous\nMy ears can't hear what you say to me\n\nHold your mouth for the war\nUse it for what it's for\nSpeak the truth about me\nDETERMINED\n\nPOSSESSED\nI feel a conquering will down inside me\nSTRENGTH\nThe strength of many to crush who might stop me\nMy strength is in number\nAnd my soul lies in every one\nThe releasing of anger\nCan better any medicine under the sun\n\nBones in traction\nHands break to hone raw energy\nBold and disastrous\nMy ears can't hear what you say to me\n\nHold your mouth for the war\nUse it for what it's for\nSpeak the truth about me\nDETERMINED\n\nThere comes a time within everyone\nTo close your eyes to what's real\n\nNo comprehension to fail\nI vacuum the wind for my sail\nCan't be the rest, let others waste my time\nOwning success is the bottom line\nLike a knife into flesh\nAfter life is to death\nPulling and punching the rest of duration\nNo one can piss on this determination",
-      chanson21: "Unknown Road\n\nSo you're currently content with your surroundings?\nBecause you possess a vague sense of accomplishment\nBut when you had to give did give conservative?\nDo you think about all the year's that passed you by we're all well\nSpent?\n\nPictures of everyday life spark memories\nAnd certain things pull triggers in your mind\nWhat would be different now if you were there than here\nWhat passages, what fantasies lie just beyond the unknown road\n\nDo you know, the miracles that could be found\nThey're waiting down the unknown road\nSo it goes a few more cornerstones that could be yours\nEver get the thought you were mistaken?\n\nEver think about the stone's you left unturned?\nMore chances slip away with every passing day\nSuffering with cold you've so afraid you might get\nBurned\n\nAnd wondering can take it's toll, yeah\nAnd wondering you can rack your skull\nAnd wondering can send your imagination up a tree\nWondering what fantasies lie just beyond the unknown road\n\nDo you know the miracles that could be found\nThey're waiting down the unknown road\nSo it goes a few more cornerstones could be yours\n\nTime is right now of the essence\nTime is right to learn your lessons\nTime is right now of the essence\nTime is all that you have left\n\nThing's you've contemplated the unknown road is one\nThing's you've contemplated the unknown road is one\nThing's you've, you contemplated the unknown road is one\nThing's you've, you contemplated the unknown road is one",
+      chanson21: "Gone Away\n\nMaybe in another life\nI could find you there\nPulled away before your time\nI can't deal, it's so unfair\n\nAnd it feels\nAnd it feels like\nHeaven's so far away\nAnd it feels\nYeah, it feels like\nThe world has grown cold\nNow that you've gone away\n\nLeaving flowers on your grave\nTo show that I still care\nBlack roses and Hail Marys\nCan't bring back what's taken from me\n\nI reach to the sky\nAnd call out your name\nAnd if I could trade\nI would\n\nAnd it feels\nAnd it feels like\nHeaven's so far away\nAnd it stings\nYeah, it stings now\nThe world is so cold\nNow that you've gone away\nGone away\nGone away\nYeah, yeah, yeah, yeah, yeah\nOoh\nYeah, ooh-ooh-ooh-ooh, oh-oh, yeah\nI'll save your soul\nWhoa, yeah, yeah, ooh\n\nI reach to the sky\nAnd call out your name\nOh, please let me trade\nI would\n\nAnd it feels\nAnd it feels like\nHeaven's so far away\nAnd it feels\nYeah, it feels like\nThe world has grown cold\nNow that you've gone away\nGone away\nGone away\nYeah, yeah, yeah, yeah, yeah\nOoh\nYeah, ooh-ooh-ooh-ooh, oh-oh, yeah\nWell, ooh\nYeah, ooh-ooh-ooh-ooh, oh-oh, yeah",
       chanson22: "This is the End\n\nSeems every station on the TV\nIs selling something no one can be\nIf every page was torn from the magazine\nWould cash still drive the media machine?\nThe products, damage and pursuit are endless\nIdentity can leave you selfless\n\nWe will not witness this anymore\n\nThis is the end for you, my friend\nI can't forgive, I won't forget\nOn and on, we sing our songs and\nOn and on, the wars wage on and\nOn and on, we sing our songs for more\n\nFor more\n\nYour eyes are open but you can't see\nYour mouth is moving but you don't speak\nA blitzkrieg of images to break your will\nI hope you choke on every pill\n\nWe will not witness this anymore\n\nThis is the end for you, my friend\nI can't forgive, I won't forget\nOn and on, we sing our songs and\nOn and on, the wars wage on and\nOn and on, we sing our songs for more\n\nWe will not witness this anymore\n\nThis is the end for you, my friend\nI can't forgive, I won't forget\nThis is the end for you, my friend\nI can't forgive, I won't forget\nOn and on, we sing our songs and\nOn and on, the wars wage on and (forget)\nOn and on, we sing our songs and\nOn and on, the wars wage on and (forget)\nOn and on, we sing our songs and\nOn and on, the wars wage on and (forget)\nOn and on, we sing our songs for more\n\nWe sing our songs for more",
       chanson23: "Ready to Fall\n\nHold on, slow down, again from the top now and tell me everything\nI know I've been gone for what seems like forever but I'm here now waiting\n\nTo convince you that I'm not a ghost or a stranger, but closer than you think\nShe said, Just go on to what you pretend is your life but please don't die on me\n\nWings won't take me!\nHeights don't faze me!\nSo take a step!\nBut don't look down, take a step...!\n\nNow I'm standing on the rooftop ready to fall\nI think I'm at the edge now, but I could be wrong\nI'm standing on the rooftop ready to fall, ooh-oh, ooh-oh\n\nPerpetual motion, the image won't focus, a blur is all that's seen\nBut here in this moment like the eye of a storm, it all came clear to me\n\nI found a shoulder to lean on, an infallible reason to live all by itself\nI took one last look from the heights that I once loved and then I ran like hell\n\nWings won't take me!\nHeights don't faze me!\nSo take a step!\nBut don't look down, take a step...!\n\nNow I'm standing on the rooftop ready to fall\nI think I'm at the edge now but I could be wrong\nI'm standing on the rooftop ready to fall, ooh-oh, ooh-oh\n\nI count the times that I've been sorry (I know, I know)\nNow my compassion slowly drowns (I know, I know)\nIf there's a time these walls could guard you (I know, I know)\nThen let that time be right now\n\nNow I'm standing on the rooftop\nNow I'm standing on the rooftop ready to fall\n\nI'm standing on the rooftop ready to fall\nI think I'm at the edge now but I could be wrong\nI'm standing on the rooftop ready to fall, ooh-oh, ooh-oh\n\nNow I'm standing on the rooftop (ready to fall)\nNow I'm standing on the rooftop (ready to fall)\nNow I'm standing on the rooftop (ready to fall)\nNow I'm standing on the rooftop ready to fall",
-      chanson24: "American Jesus\n\n\I don't need to be a global citizen'Cause I'm blessed by nationality\nI'm a member of a growing populace\nWe enforce our popularity\nThere are things that seem to pull us under, and\nThere are things that drag us down\nBut there's a power and a vital presence\nThat's lurking all around\n\nWe've got the American Jesus\nSee him on the interstate\nWe've got the American Jesus\nHe helped build the president's estate\n\nI feel sorry for the Earth's population\n'Cause so few live in the USA\nAt least the foreigners can copy our morality\nThey can visit, but they cannot stay\nOnly precious few can garner the prosperity\nIt makes us walk with renewed confidence\nWe've got a place to go when we die\nAnd the architect resides right here\n\nWe've got the American Jesus (ah)\nBolstering national faith (ah, ah, ah)\nWe've got the American Jesus (ah, ah, ah)\nOverwhelming millions every day (ah, ah)\n\nHe's the farmers' barren fields (in God)\nThe force the army wields (we trust)\nThe expression on the faces of the starving millions (because he's one of us)\nThe power of the man (break down)\nThe fuel that drives the Klan (cave in)\nHe's the motive and the conscience of the murderer (we can redeem your sin)\n\nHe's the preacher on TV (strong heart)\nThe false sincerity (clear mind)\nThe form letter that's written by the big computers (and infinitely kind)\nThe nuclear bombs (you lose)\nThe kids with no moms (we win)\nAnd I'm fearful that he's inside me (he is our champion), yeah!\n\nWe've got the American Jesus\nSee him on the interstate (we've got the American Jesus)\nWe've got the American Jesus\nExercising his authority\nWe've got the American Jesus\nBolstering national faith (we've got the American Jesus)\nWe've got the American Jesus\nOverwhelming millions every day (ah ah ah), yeah!\n\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God\nOne nation under God",
+      chanson24: "Red Flag\n\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\n\nWell, I've never seen us act like this\nOur only hope is in minds of kids\nAnd they'll show us a thing or two\nOur only weapons are the guns of youth\nIt's only time before they tighten the noose\nAnd then the hunt will be on for you\n\nThe red flag waving never meant the same, no\nThe red flag waving never meant the same\n\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\n\nLike the smallest bee packs a sting\nLike the pawn checkmates a king\nWe'll attack at the crack of dawn\nBuild a ladder if there's a wall\nDon't be afraid to slip and fall\nSpeak for yourself or they'll speak for you\n\nThe red flag waving never meant the same, no\nThe red flag waving never meant the same, no\n\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\n\nLike a fire, don't need water\nLike a jury, needs a liar\nLike a riot, don't need order\nLike a madman needs a martyr\n\nWe don't need them\nWe don't need them\nWe don't need them\nWe don't need them\nWe don't need them\nWe don't need them\nWe don't need them\nWe don't need them\n\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\nCast off the crutch that kills the pain\nThe red flag wavin' never meant the same\nThe kids of tomorrow don't need today\nWhen they live in the sins of yesterday\n\nCast off the crutch that kills the pain (We don't need them, we don't need them)\nThe red flag wavin' never meant the same (We don't need them, we don't need them)\nThe kids of tomorrow don't need today (We don't need them, we don't need them)\nWhen they live in the sins of yesterday (We don't need them, we don't need them)",
       chanson25: "Stickin In my Eye\n\nWhen I look 'round, I only see outta one eye\nAs the smoke surrounds my head, the sauna\nI hear the voices, but I can't make out their words\nSaying things, saying things that\n\nI got something sticking in my eye\nGot something sticking in my eye\nGot something sticking in my eye\n\nI feel unusual from thinking\nAbout the underground decay, God help me\nKill beneath the camera, watch the world begin to cry\nIt's not from pity, it comes from\nWhat's been sticking in my eye\n\nGot something sticking in my eye\nGot something sticking in my eye\nGot something sticking in my eye\nGot something sticking in\nGot something sticking in\nGot something sticking in my eye",
       chanson26: "Los Angeles is Burning\n\nSomewhere high in the desert, near a curtain of a blue\nSaint Ann's skirts are billowing\nBut down here in the city of limelights\nThe fans of Santa Ana are withering\n\nAnd you can't deny the living is easy\nIf you never look behind the scenery\nIt's showtime for dry climes\nAnd bedlam is dreaming of rain\n\nWhen the hills of Los Angeles are burning\nPalm trees are candles in the murder wind\nSo many lives are on the breeze\nEven the stars are ill at ease\nAnd Los Angeles is burning\n\nThis is not a test\nOf the emergency broadcast system\nWhere Malibu fires and radio towers\nConspire to dance again\n\nAnd I cannot believe the media Mecca\nThey're only trying to peddle reality\nCatch it on prime time, story at nine\nThe whole world is going insane\n\nWhen the hills of Los Angeles are burning\nPalm trees are candles in the murder wind\nSo many lives are on the breeze\nEven the stars are ill at ease\nAnd Los Angeles is burning\n\nA placard reads, The end of days\nJacaranda boughs are bending in the haze\nMore a question than a curse\nHow could hell be any worse?\nThe flames are starting\nThe camera's running\nSo take warning\n\nWhen the hills of Los Angeles are burning\nPalm trees are candles in the murder wind\nSo many lives are on the breeze\nEven the stars are ill at ease\nAnd Los Angeles is burning",
 

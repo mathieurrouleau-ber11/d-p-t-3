@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sepul - Paroles</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at center, #3a0000, #000000 80%);
+      color: #fff;
+      text-align: center;
+      margin: 40px;
+    }
+
+    /* 🔥 HEADER */
+    .header {
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+    }
+
+    .logo-img img {
+      width: 400px;
+      filter: drop-shadow(0 0 15px red);
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .logo span {
+      color: #ff3c00;
+      text-shadow:
+        0 0 10px #ff3c00,
+        0 0 20px #ff0000,
+        0 0 40px #ff0000;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      color: #bbb;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* CARDS */
+    .card {
+      position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #5e0000;
+  transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    .card::after {
+      content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: #fc0000a4;
+  color: black;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 18px;
+  opacity: 0;
+  box-shadow: 0 0 15px #fc414181;
+  transition: 0.3s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      filter: brightness(0.8) contrast(1.2);
+    }
+
+    /* LYRICS */
+    .lyrics {
+      margin-top: 30px;
+      padding: 20px;
+      background: #111;
+      border: 1px solid #330000;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      white-space: pre-line;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    }
+
+    /* BOUTON */
+    #backToTop {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #ff0000, #ff6600);
+      border: none;
+      border-radius: 30px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      display: none;
+    }
+
+    #backToTop:hover {
+      transform: scale(1.1);
+    }
+
+    /* LIEN DISCRET */
+    .secret-link {
+      position: fixed;
+      top: 5px;
+      left: 8px;
+      color: #aaa;
+      font-size: 10px;
+      text-decoration: none;
+      opacity: 0.4;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <a href="index.html" class="secret-link">Principal</a>
+
+  <div class="header">
+    <div class="logo-img">
+      <img src="logo.png" alt="logo">
+    </div>
+
+    <h1 class="logo">
+      <span>SEPUL</span>
+    </h1>
+
+    <p class="tagline">Groupe hommage</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+<br>
+<br>
+  <div id="lyrics" class="lyrics"></div>
+
+  <button id="backToTop">⬆ Retour en haut</button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+
+    backToTopBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const chansons = [
+      { id: "chanson1", titre: "C.I.U. (Criminals in Uniform)", image: "sb.jpg" },
+      { id: "chanson2", titre: "Orgasmatron", image: "sb.jpg" },
+      { id: "chanson3", titre: "Arise", image: "sc.jpg" },
+      { id: "chanson4", titre: "Dead Embryonic Cells", image: "sc.jpg" },
+      { id: "chanson5", titre: "Desperate Cry", image: "sc.jpg" },
+      { id: "chanson6", titre: "Murder", image: "sc.jpg" },
+      { id: "chanson7", titre: "Subtraction", image: "sc.jpg" },
+      { id: "chanson8", titre: "Altered State", image: "sc.jpg" },
+      { id: "chanson9", titre: "Under Siege (Regnum Irae)", image: "sc.jpg" },
+      { id: "chanson10", titre: "Meaningless Movements", image: "sc.jpg" },
+      { id: "chanson11", titre: "Infected Voices", image: "sc.jpg" },
+      { id: "chanson12", titre: "Escape to the Void", image: "sk.jpg" },
+      { id: "chanson13", titre: "Troops of Doom", image: "sk.jpg" },
+      { id: "chanson14", titre: "Inner Self", image: "sn.jpg" },
+      { id: "chanson15", titre: "Mass Hypnosis", image: "sn.jpg" },
+      { id: "chanson16", titre: "Refuse/Resist", image: "so.jpg" },
+      { id: "chanson17", titre: "Territory", image: "so.jpg" },
+      { id: "chanson18", titre: "Slave New World", image: "so.jpg" },
+      { id: "chanson19", titre: "Amen", image: "so.jpg" },
+      { id: "chanson20", titre: "Nomad", image: "so.jpg" },
+      { id: "chanson21", titre: "Roots", image: "st.jpg" },
+      { id: "chanson22", titre: "War Ensemble", image: "sv.jpg" },
+      { id: "chanson23", titre: "Skeletons of Society", image: "sv.jpg" },
+      { id: "chanson24", titre: "Seasons In the Abyss", image: "sv.jpg" },
+      { id: "chanson25", titre: "Mandatory Suicide", image: "sy.jpg" },
+      { id: "chanson26", titre: "Raining Blood", image: "sz.jpg" }
+    ];
+
+    const paroles = {
+      chanson1: "C.I.U. (Criminals in Uniform)\n\nHate, a feeling we can see\nCreate fictitious enemy\nOutlaw of expression\nForget past wars we have fought\n\nWatchers of morality\nControlled by the hierarchy\nMachine to society\nFalling to conformity\n\nTerrified to speak your mind\nHostage of the government\nAnd doesn't matter who you are\nFor our own good\n\nBuilt upon nation's security\nPolice state, brutality\nFinal infliction, manifestation\nThe doctrine is to brainwash\n\nTerror is control\nThe key is distrust\nAnnihilate free thought\nDespise the unknown\n\nWatchers of morality\nControlled by the hierarchy\nMachine to society\nFalling to conformity\n\nTerrified to speak your mind\nHostage of the government\nAnd doesn't matter who you are\nFor our own good\n\nBuilt upon nation's security\nPolice state, brutality\nFinal infliction, manifestation\nThe doctrine is to brainwash",
+      chanson2: "Orgasmatron\n\nI am the one Orgasmatron\nThe oustreched grasping hand\nMy image is of agony\nMy servants rape the land\n\nObsequious and arrogance\nClandestine and pain\nTwo-thousand years of misery\nOf torture in my name\n\nHypocrisy made paramount\nParanoia the law\nMy name is called religion\nSadistic sacred whore\n\nI twist the truth, I rule the world\nMy crown is called deceit\nI am the emperor of lies\nYou grovel at my feet\n\nI rob you and I slaughter you\nYour downfall is my gain\nAnd still you play the sycophant\nAnd rebel in my pain\n\nAnd all my promises are lies\nAll my love is hate\nI am the politician\nAnd I decide your fate\n\nI marched before a martiant world\nAn army for the fight\nI speak of great heroic days\nOf victory and might\n\nI hold your banner drenched in blood\nI urge you to be brave\nI lead you to your destiny\nI lead you to your grave\n\nYour bones will build my palace\nYour eyes will stud my crowns\nFor I am Mars, the god of war\nAnd I'll cut you down",
+      chanson3: "Arise\n\nI see the world old\nI see the world (dead)\nArise\n\nObscured by the sun\nApocalyptic clash\nCities fall In ruin\nWhy must we die?\n\nObliteration of mankind\nUnder a pale grey sky we shall arise\nDid nothing, saw nothing\nTerrorist confrontation\n\nWaiting for the end\nWartime conspiracy\n\nI see the world (old)\nI see the world (dead)\n\nUm, dois, três, go\n\nLand of anger\nI didn't ask to be born\nSadness, sorrow\n\nEverything so alone\n\nLaboratory sickness\nInfects humanity\nNo hope for cure\nDie by technology\n\n(We're born) with pain\nSuffer remains\nWe're born with pain\nSuffer remains\nWe're dead",
+      chanson4: "Dead Embryonic Cells\n\nLand of anger, I didn't ask to be born\nSadness, sorrow, everything so alone\nLaboratory sickness infects humanity\nNo hope for cure, die by technology\n\nA world full of shit coming down\nTribal violence everywhere\nLife in the age of terrorism\nWe spit in your other face\n\nWar of races\nWorld without intelligence\nA place consumed by time\nEnd of it all\n\nWe're born\nWith pain\nNo more\nWe're dead embryonic cells\n\nCorrosion inside, we feel\nCondemned future, we see\nEmptiness calls, we hear\nFinal premonition, the truth\n\nLand of anger, I didn't ask to be born\nSadness, sorrow, everything so alone\nLaboratory sickness infects humanity\nNo hope for cure, die by technology\n\nWe're born\nWith pain\nSuffer remains\n\nWe're born\nWith pain\nSuffer remains\nWe're dead",
+      chanson5: "Desperate Cry\n\nSacrifice is pleasure\nWhen life ends in pain\nConceive the last mistakes\nWhich belongs to all\n\nCreation of insane rule\nAll we hear: Desperate cry\n\nDeath the coldest wind\nSeeps into your pores\nA nation born of hate\nForgotten distant time\n\nCreation of insane rule\nAll we hear: Desperate cry\n\nEndless empty maze\nDespair, distress and silence\nA poison vacuum, infinity\nLife, lies, deceit\n\nMute souls end in silence\nOceans tainted with blood\nEmpty promises of hope\nBuried deep, infected ground\n\nCreation of insane rule\nAll we hear: Desperate cry\n\nCry!",
+      chanson6: "Murder\n\nChaotic violence in my eyes\nThis whole world moves backwards\nPeace, another sign that lies\nLife today is not worth the pain\n\nOn the radio, another homicide\nInmates suffocate in jail\nSevered heads of revolt\nI wish I'd never been born\n\nSame hand that builds, destroys\nSame hand that relieves, betrays\nSame hand that seeds, burns\nSame peace that exists, here lies\n\nI can't trust anymore\nCriminals within the law\nI have something to say\nWhere I live, don't believe in another day\n\nHeresy and graft\nApartheid\nSame religion that saves\nDamns you!",
+      chanson7: "Subtraction\n\nFirst generation born\nA plague was created\nThe cure is in my mind\nSolitude is all I see\n\nPowerful nations repress feeling\nBuried beneath the fear\nMaking you a coward\nBuying your safety\n\nGrey shadows fill your head\nStealing your last breath\nScared of the future\nProphecies of chaos\n\nSubtraction of personality\nWithin the human race you'll always be\n\nGreen castles from the past\nBleeding in sands of war\nNo man is immortal\nHistory is no more\n\nConfused leaders behind our backs\nStifling our ideas\nMisunderstand signs of progress\nMinds of time regress\n\nSearching for an answer\nTo understand myself\nTry to save our world\nWhy is killing in reverse\n\nGreen castles from the past\nBleeding in sands of war\nNo man is immortal\nHistory is no more\n\nSubtraction of personality\nThe Earth will never be born again",
+      chanson8: "Altered State\n\nFear in my subconscious\nTerror invades my speech\nFaith in my own words\nNo one knows the nameless\n\nWarm winds and burning tears\nSpirits outside bodies\n\nEndless repression by majority\nA master without command\nStrange new dimension disturbing my brain\nCensored ideas, counterfeit answers\n\nShining blast, no perception\nAltered state, no reaction\nShining blast\nAltered state\n\nSlow talk, fast thoughts\nAncient scriptures\nControversial lines\nKnowledge changes\n\nRunning in the wrong direction\nCrossing with blind eyes\nI'm closer to myself\nSanity can't invade",
+      chanson9: "Under siege (Regnum Irae)\n\nThe dual substance of Christ\nThe yearning so human of man to attain God\nHas always been a deep inscrutable mystery to me\nMy principle anguish and source of all my joys and sorrows\n\nReligion domain is all I see\nSuffocate the scum with mediocrity\nLying and changing your fate\nAnno Domini ends, misery\n\nFrom my youth onward has been the incessant\nMerciless battle between the spirit and the flesh\nAnd my soul is the arena where these two armies\nHave clashed and met\n\nHoly wars unleashing bloody raids\nThe sacred earth without a face\nConsumed by murderous sinners\nPsychotic leader\nInsane, insane, insane, insane!\n\nLiving in a dying age\nPersecute the human race\nTriumph of death in the wasteland\nBlood signs your epitaph\n\nReligion domain is all I see\nSuffocate the scum with mediocrity\nLying and changing your fate\nAnno Domini ends, misery",
+      chanson10: "Meaningless Movements\n\nBorn with remorse\nTo a cold barren place\nBattle between minds\nHungry for words of prey\n\nContradictory truth, secrets in lies\nMeaningless movements\n\nIcons review their sins\nFaith cheaper than thou\nDoubting your ideals\nTorment shreds your brain\n\nFearful fantasy\nRespects the unknown\nTurning your heart red\nA requiem to celebrate you\n\nWords I can not understand\nShrieks in my moment of pain\n\nImpostor hides behind a mask\nMy words against your lies\n\nTurn my head\nTo see what I know\nA shadow without form\nPainted on the wall\n\nBorn with remorse\nTo a cold barren place\nBattle between minds\nHungry for words of prey\n\nOne moment's mistake\nFalse steps in the ground\nLaws made by the blind\nRuling reign of light\n\nContradictory truth, secrets in lies\nMeaningless movements",
+      chanson11: "Infected Voice\n\nFear ties you up\nAnd you don't grow\nBeing wrong and lost\nNo one admits the defeat\n\nConscience is fair\nUnfaithful words\nBetrayal and greed\nPast thoughts to win alone\n\nEnvy, still strong\nHatred, still alive\n\nFrom beyond an empty world\nInfected voice, a scream alone\n\nInfected voice!\n\nMy throat is dry\nA last cry tries to escape\nGuilt and frustration\nNo time to turn around\n\nLooking behind, I'm not alone\nAre they friends or enemies?\nGoing insane without a cure\nScarring my eyes, visions lost\n\nRemorse for the human race\nFear of becoming them\nEnvy, the strongest feeling\nHatred still in their heart\n\nEnvy, still strong\nHatred, still alive\n\nFrom beyond an empty world\nInfected voice, a scream alone\n\nInfected voice!",
+      chanson12: "Escape to the Void\n\nThe pest in the eyes of death follows us\nThrough the dirty streets of blood\nIt begins to eat inside us, decaying our bones\nHow will we escape if the void covers our lungs?\nWe are buried in the spewed trash for ourselves\n\nBlood, pain - nothing to say\nWhy then - must we die?\n\nEscape to the void\nEscape to the void\n\nI look at my face on the other side of the mirror\nMy face falls down in pieces full of worms\nI burst my rotten heart with my own hands\nI'm dying and I can't help myself\n\nBlood, pain - nothing to say\nWhy then - must we die?\n\nWhat have I been running from?\nI'm not guilty\nYou've shown me the worst way\nCause you're my victim... the next one\n\nThe pest in the eyes of death follows us\nThrough the dirty streets of blood\nIt begins to eat inside us, decaying our bones\nHow will we escape if the void covers our lungs?\nWe are buried in the spewed trash for ourselves\n\nBlood, pain - nothing to say\nWhy then - must we die?\n\nEscape to the void\nEscape to the void",
+      chanson13: "Troops of Doom\n\nTotal eclipse hides the Earth\nThe night of doom has come\nAntichrist soldiers are proclaimed\nTo send souls to the Hell\n\nCatastrophe, destruction\nMankind is slaughtered without mercy\nSulfur clouds are in the air\nLegion winds corrode the universe\n\nMessiah, redeemer of mankind\nChained in the valley of Hades\nCrowds blinded by evil\nOnly death is real\n\nThe nuclear war announces the end of the world\nThe mankind is buried and forgotten\nProphets foresee the doom\nThey foresee the triumph of your death",
+      chanson14: "Inner Self\n\nWalking these dirty streets\nWith hate in my mind\nFeeling the scorn of the world\nI won't follow rules\n\nBlame and lies, contradictions arise\nBlame and lies, contradictions arise\n\nNonconformity in my inner self\nOnly I guide my inner self\n\nI won't change my way\nIt has to be this way\nI live my life for myself\nForget your filthy ways\n\nBlame and lies, contradictions arise\nBlame and lies, contradictions arise\n\nNobody will change my way\nLife betrays, but I keep on going\nThere's no light, but there is hope\nCrushing oppression, I win\n\nBetraying, playing dirty\nYou think you'll win\nBut someday you'll fall\nAnd I'll be waiting\n\nLaughs of an insane man\nYou'll hear\nPersonality is my weapon\nAgainst your envy\n\nWalking these dirty streets\nWith hate in my mind\nFeeling all the scorn of the world\nI won't follow your rules\n\nNonconformity in my inner self\nOnly I guide my inner self",
+      chanson15: "Mass Hypnosis\n\nLooking inside your future uncertain\nThe fear grows as a sickness uncured\nThe silence agonizes, the word sound strong\nLook inside the eyes, leave this world\n\nHate through the arteries\nMass hypnosis\n\nUncertain of being back\nThey make you feel so good\nEverything is darkened\nObey like a fool\n\nHate through the arteries\nMass hypnosis\n\nSoldiers going nowhere\nBelievers kneeling over their sins\nInhuman instinct of cowardly leaders\nMake the world go their own way\n\nTens of thousands hypnotized\nTrying to find a reason why\nLook inside your empty eyes\nObey 'til the end\n\nLooking inside, your future's uncertain\nThe fear grows as a sickness uncured\nThe silence agonizes, the word sound strong\nLook inside the eyes, leave this world\n\nHate through the arteries\nMass hypnosis\n\nSoldiers going nowhere\nSoldiers blinded by their faith",
+      chanson16: "Refuse/Resist\n\nChaos A.D.\nTanks on the streets\nConfronting police\nBleeding the plebs\nRaging crowd\nBurning cars\nBloodshed starts\nWho'll be alive?!\n\nChaos A.D.\nArmy in siege\nTotal alarm\nI'm sick of this\nInside the State\nWar is created\nNo man's land\nWhat is this shit?!\n\nRefuse\nResist\nRefuse\n\nChaos A.D.\nDisorder unleashed\nStarting to burn\nStarting to lynch\nSilence means death\nStand on your feet\nInner fear\nYour worst enemy\n\nRefuse\nResist\nRefuse\nResist",
+      chanson17: "Territory\n\nUnknown man\nSpeaks to the world\nSucking your trust\nA trap in every word\n\nWar for territory\nWar for territory\n\nChoice control\nBehind propaganda\nPoor information\nTo manage your anger\n\nWar for territory\nWar for territory\n\nDictators' speech\nBlasting off your life\nRule to kill the urge\nDumb assholes' speech\n\nYears of fighting\nTeaching my son\nTo believe in that man\nRacist human being\nRacist good will live\nShame and regret\nOf the pride\nYou've once possessed\nWar for territory\nWar for territory",
+      chanson18: "Slave New World\n\nFace the enemy\nStare inside you\nControl your thoughts\nDestroy, destroy 'em all\n\nYou censor what we breathe\nPrejudice with no belief\nSenseless violence all around\nWho is it, that keeps us down?\nDown\n\nOnce all free tribes\nChained down led lives\nBlood boils inside me\nWe're not slaves, we're free\n\nFace the enemy\nStare inside you\nControl your thoughts\nDestroy, destroy 'em all",
+      chanson19: "Amen\n\nForgive me father, forgive me God\nI know I've sinned with no remorse\nApocalyptic visions went through my head\nHere today, gone tomorrow\n\nIt's all insane\nI'm feeling sick, I'm feeling numb\nThe storm will come\nIn the name of God, I'm the chosen one\n\Terror raids the land\nTo ashes we'll be sent\nIn the name of God\nLives cast away\n\nMartyrdom of myself\nArmageddon comes\nIn the name of God\nNot one more dead\n\nFire blasting, cutting edge\nChildren burn in flames\nIn the name of God\nWe're going insane\n\nLet us die\nYou don't realize\nThis is the time\nGod's sacrifice\n\nI'm leaving behind\nLesson in hate\nIn the name of God\nWe're all dead\n\nBurn!\n\nWalking these dirty streets\nWith hate in my mind\nFeeling the scorn of the world\nI won't follow your rules\n\nBlame and lies\nContradictions arise\nBlame and lies\nContradictions arise\n\nNonconformity in my inner self\nOnly I guide my inner self\n\nI won't change my way\nIt has to be this way\nI live my life for myself\nForget your filthy ways\n\nBlame and lies\nContradictions arise\nBlame and lies\nContradictions arise\n\nNobody will change my way\nLife betrays, but I keep on going\nThere's no light, but there's hope\nCrushing oppression, I win\n\nBetraying and playing dirty, you think you'll win\nSomeday you'll fall, and I'll be waiting\n\nLaughs of an insane man, you'll hear\nPersonality is my weapon against your envy\n\nWalking these dirty streets\nWith hate in my mind\nFeeling the scorn of the world\nI won't follow your rules, your motherfucker piece of shit\n\nNonconformity in my inner self\nOnly I guide my inner self",
+      chanson20: "Nomad\n\nTravelling through the time\nMoving slowly in the sand\nKnowledge is the weapon\nAgainst the hunger in the land\n\nSolitude met herself\nLessons from the primal step\nMemories from an ending life\nLiars can't stop the tribes\n\nNomad, Nomad, Nomad, Nomad\n\nBrother is the son of rape\nThe blood that once unites\nWanna choose the way they die\nLook inside their minds\n\n(echoes in the)\nActual tribe no longer sounds\nThe ancient teachings failed\nMovement of my culture\nMy beliefs have no more tales\n\nWho are you to criticize\nTo judge and burn the tribes\nThe world will be extinct\nAnd your flesh will rot with mine\n\nNomad, Nomad, Nomad, Nomad",
+      chanson21: "Roots\n\nRoots, bloody roots\nRoots, bloody roots\nRoots, bloody roots\nRoots, bloody roooaaaaaahh!\n\nI believe in our fate\nWe don't need to fake\nIt's all we wanna be\nWatch me freak!\n\nI say, we're growing every day\nGetting stronger in every way\nI'll take you to a place\nWhere we shall find our\n\nRoots, bloody roots\nRoots, bloody roots\nRoots, bloody roots\nRoots, bloody roots\n\nRain, bring me the strength\nTo get to another day\nAnd all I want to see\nSet us free\n\nWhy?\nCan't you see?\nCan't you feel?\nThis is real, aaah!\n\nI pray, we don't need to change\nOur ways to be saved\nThat all we wanna be\nWatch us freak",
+      chanson22: "War Ensemble\n\nPropaganda death ensemble, burial to be\nCorpses rotting through the night in blood-laced misery\nScorched Earth the policy, the reason for the siege\nThe pendulum, it shaves the blade, strafing air blood raid\n\nInfiltration push reserves, encircle the front lines\nSupreme art of strategy playing on the minds\nBombard 'til submission, take all to their graves\nIndication of triumph, the number that are dead\n\nSport, the war\nWar support\n\nThe sport is war, total war\nWhen victory's really massacre\nThe final swing is not a drill\nIt's how many people I can kill\n\nSport the war\nWar support\n\nThe sport is war, total war\nWhen victory's really survival\nThe final swing is not a drill\nIt's how many people I can kill\n\nBe dead, fiend from above, when darkness falls\nDescend unto my sights, your fallen walls\nSpearheads break through the lines, flanked all around\nSoldiers of attrition forward their ground\n\nRegime prophetic age, old in its time\nFlowing veins run on through, deep in the Rhine\nCenter of the web, all battles scored\nWhat is our war crime? Era forever more\n\nWar!\n\nPropaganda war ensemble, burial to be\nBones shining by the night in blood-laced misery\nCampaign of elimination, twisted psychology\nWhen victory is to survive and death is defeat\n\nSport, the war\nWar support\n\nThe sport is war, total war\nWhen the end is a slaughter\nThe final swing is not a drill\nIt's how many people I can kill",
+      chanson23: "Skeletons of Society\n\nMinutes seem like days since fire ruled the sky\nThe rich became the beggars and fools became the wise\nMemories linger in my brain, burning from the acid rain\nA pain I never have won\n\nNothing here remains, no future and no past\nNo one could foresee the end that came so fast\nHear the prophet make his guess, that paradise lies to the west\nSo join his quest for the sun\n\nShades of death are all I see\nFragments of what used to be\n\nThe world slowly decays, destruction fills my eyes\nHarboring the image of a spiraling demise\nBurning winds release their fury, simulating judge and jury\nDrifting flurries of pain\n\nDeafening silence reigns as twilight fills the sky\nEventual supremacy, daylight waits to die\nDarkness always calls my name, a pawn in this recurring game\nHumanity going insane\n\nShades of death are all I see\nSkeletons of society\n\nShades of death are all I see\nFragments of what used to be\nFragments of what used to be\nSkeletons of society\n\nMinutes seem like days, corrosion fills the sky\nMorbid dreams of anarchy brought judgment in disguise\nMemories linger in my brain, life with nothing more to gain\nPerpetual madness remains\n\nShades of death are all I see\nSkeletons of society\n\nShades of death are all I see\nFragments of what used to be\nFragments of what used to be\nSkeletons of society",
+      chanson24: "Seasons In the Abyss\n\nRazor's edge outlines the dead\nIncisions in my head\nAnticipation the stimulation\nTo kill the exhilaration\n\nClose your eyes, look deep in your soul\nStep outside yourself and let your mind go\nFrozen eyes stare deep in your mind as you die\n\nClose your eyes and forget your name\nStep outside yourself and let your thoughts drain\nAs you go insane, go insane\n\nInnate seed to watch you bleed\nA demanding physical need\nDesecrated, eviscerated\nTime perpetuated\n\nClose your eyes, look deep in your soul\nStep outside yourself and let your mind go\nFrozen eyes stare deep in your mind as you die\n\nClose your eyes and forget your name\nStep outside yourself and let your thoughts drain\nAs you go insane, go insane\n\nInert flesh, a bloody tomb\nA decorated splatter brightens the room\nAn execution, a sadist ritual\nMad intervals of mind residuals\n\nClose your eyes, look deep in your soul\nStep outside yourself and let your mind go\nFrozen eyes stare deep in your mind as you die\n\nClose your eyes and forget your name\nStep outside yourself and let your thoughts drain\nAs you go insane, go insane",
+      chanson25: "Mandatory Suicide\n\nMurder at your every footstep\nA child's toy sudden death\nSniper blazes you through your knees\nFalling down, can you feel the heat?\n\nBurn!\n\nAmbushed by the spray of lead\nCount the bullet holes in your head\nOffspring sent out to cry\nLiving mandatory suicide\n\nSuicide\nSuicide\nSuicide\nSuicide\n\nHoles burn deep in your chest\nRaked by machine gun fire\nScreaming soul sent out to die\nLiving mandatory suicide\n\nSuicide\nSuicide\nSuicide\nSuicide\n\nLying, dying, screaming in pain\nBegging, pleading, bullets drop like rain\nMines explode, pain sheers through your brain\nRadical amputation, this is insane\nFly swatter stakes drive through your chest\nSpikes impale you as you're forced off the crest\nSoldier of misfortune hunting with bated breath\nA vile smell, like tasting death\nDead bodies, dying and wounded litter the city streets\nShattered glass, bits of clothing and human deceit\nDying in terror, blood's cheap, it's everywhere\nMandatory suicide, massacre on the front line",
+      chanson26: "Raining Blood\n\nTrapped in purgatory\nA lifeless object, alive\nAwaiting reprisal\nDeath will be their acquittance\nThe sky is turning red\nReturn to power draws near\nFall into me, the sky's crimson tears\nAbolish the rules made of stone\n\nPierced from below, souls of my treacherous past\nBetrayed by many\nNow ornaments dripping above\nAwaiting the hour of reprisal\nYour time slips away\n\nRaining blood\nFrom a lacerated sky\nBleeding its horror\nCreating my structure\nNow I shall reign in blood",
+
+    };
+
+    const grid = document.getElementById("grid");
+
+    chansons.forEach(c => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<img src="${c.image}"><p>${c.titre}</p>`;
+
+      div.onclick = () => {
+        const lyricsDiv = document.getElementById("lyrics");
+        lyricsDiv.textContent = paroles[c.id];
+
+        lyricsDiv.scrollIntoView({ behavior: "smooth" });
+        backToTopBtn.style.display = "inline-block";
+      };
+
+      grid.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
+
