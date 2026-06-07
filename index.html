@@ -35,7 +35,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
-      display: none;
+      display: inline-block;
       /* caché au début */
     }
 
@@ -192,6 +192,28 @@ body::before {
   color: #ccffe6;
 }
 
+
+.album-number {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.75);
+  font-size: 11px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+
+
   .lyrics {
   margin-top: 30px;
   padding: 25px;
@@ -213,7 +235,7 @@ body::before {
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
-  display: none;
+  display: inline-block;
   box-shadow: 0 0 10px #00ff99;
 }
 
@@ -222,8 +244,118 @@ body::before {
   box-shadow: 0 0 20px #00ff99;
 }
 
+.youtube-tab {
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  background: linear-gradient(180deg, #ff003c, #ff3366);
+  color: white;
+  padding: 8px 5px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 0 12px rgba(255, 0, 60, 0.7);
+  z-index: 3;
+  opacity: 0;
+  transition: 0.3s;
+}
 
-  </style>
+.card:hover .youtube-tab {
+  opacity: 1;
+  left: 0;
+}
+  
+.lyrics-section{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:15px;
+  margin-top:30px;
+}
+.resource-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-width:140px;
+}
+.resource-links a{
+  text-decoration:none;
+  background:#ff003c;
+  color:white;
+  padding:10px;
+  border-radius:10px;
+  font-weight:bold;
+}
+.lyrics-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:30px;
+}
+
+.media-links{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+.media-links a{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  border-radius:10px;
+  transition:all .25s ease;
+}
+
+.media-links a:hover{
+  transform:scale(1.12);
+}
+
+#ytLink{
+  background:#ff003c;
+  box-shadow:0 0 15px #ff003c;
+}
+
+#guitarLink{
+  background:#00cc66;
+  box-shadow:0 0 15px #00cc66;
+}
+
+#bassLink{
+  background:#0080ff;
+  box-shadow:0 0 15px #0080ff;
+}
+
+.lyrics{
+  margin-top:0;
+}
+
+.playlist-icon{
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  font-size:0.7em;
+  margin-left:8px;
+  transition:.25s;
+}
+.playlist-icon:hover{
+  color:#00ff99;
+  text-shadow:0 0 10px #00ff99;
+}
+
+</style>
 </head>
 
 <body>
@@ -232,14 +364,25 @@ body::before {
     <div class="overlay">
       <h1 class="logo">
         <span>Les Cactus</span> Électriques
-      </h1>
+       <a href="https://music.youtube.com/playlist?list=PL6-0Gr86klS1HT8GSraZ6PHCoPvPR855X" target="_blank" class="playlist-icon" title="Playlist YouTube Music">♪</a></h1>
       <p class="tagline">Ça pique, ça choque, ça rock!</p>
 
     </div>
   </div>
   <div class="grid" id="grid"></div><br>
-  <div id="lyrics" class="lyrics"></div>
-  <button id="backToTop">⬆ Retour en haut</button>
+  <div class="lyrics-section">
+    <div class="lyrics-wrapper">
+
+  <div class="media-links">
+    <a id="ytLink" target="_blank" href="#" title="YouTube">YT</a>
+    <a id="guitarLink" target="_blank" href="#" title="Tablature guitare">GT</a>
+    <a id="bassLink" target="_blank" href="#" title="Tablature basse">BS</a>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:center;"><div id="lyrics" class="lyrics"></div><button id="backToTop">⬆ Retour en haut</button></div>
+
+</div>
+  </div>
   <a href="index_rejet.html" style="
   position: fixed;
   top: 5px;
@@ -264,32 +407,32 @@ body::before {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     const chansons = [
-      { id: "chanson1", titre: "Linoleum", image: "a.jpg" },
-      { id: "chanson2", titre: "Leave It Alone", image: "b.jpg" },
-      { id: "chanson3", titre: "Dammit", image: "c.jpg" },
-      { id: "chanson4", titre: "Together for the Kids", image: "d.jpg" },
-      { id: "chanson5", titre: "Josie", image: "e.jpg" },
-      { id: "chanson6", titre: "Disconnected", image: "f.jpg" },
-      { id: "chanson7", titre: "Justified Black Eye", image: "g.jpg" },
-      { id: "chanson8", titre: "I Want to be Wrong", image: "h.jpg" },
-      { id: "chanson9", titre: "Fuck Authority", image: "i.jpg" },
-      { id: "chanson10", titre: "Don't Call Me White", image: "j.jpg" },
-      { id: "chanson11", titre: "Dig Up Her Bones", image: "k.jpg" },
-      { id: "chanson12", titre: "Salvation", image: "l.jpg" },
-      { id: "chanson13", titre: "Ruby Soho", image: "m.jpg" },
-      { id: "chanson14", titre: "Time Bomb", image: "n.jpg" },
-      { id: "chanson15", titre: "Hero", image: "o.jpg" },
-      { id: "chanson16", titre: "Machinehead", image: "p.jpg" },
-      { id: "chanson17", titre: "In Bloom", image: "q.jpg" },
-      { id: "chanson18", titre: "I'm Not Afraid", image: "r.jpg" },
-      { id: "chanson19", titre: "Die Die, My Darling", image: "s.jpg" },
-      { id: "chanson20", titre: "Mouth for War", image: "t.jpg" },
-      { id: "chanson21", titre: "Unknown Road", image: "u.jpg" },
-      { id: "chanson22", titre: "This is the End", image: "v.jpg" },
-      { id: "chanson23", titre: "Ready to Fall", image: "w.jpg" },
-      { id: "chanson24", titre: "American Jesus", image: "x.jpg" },
-      { id: "chanson25", titre: "Stickin In my Eye", image: "y.jpg" },
-      { id: "chanson26", titre: "Los Angeles is Burning", image: "z.jpg" },
+      { id: "chanson1", titre: "Linoleum", image: "a.jpg", yt: "https://www.youtube.com/watch?v=6axOY4PBusk", guitar: "https://www.songsterr.com/?pattern=Linoleum", bass: "https://www.songsterr.com/?pattern=Linoleum+bass" },
+      { id: "chanson2", titre: "Leave It Alone", image: "b.jpg", yt: "https://www.youtube.com/results?search_query=Leave+It+Alone" },
+      { id: "chanson3", titre: "Dammit", image: "c.jpg", yt: "https://www.youtube.com/results?search_query=Dammit" },
+      { id: "chanson4", titre: "Together for the Kids", image: "d.jpg", yt: "https://www.youtube.com/results?search_query=Together+for+the+Kids" },
+      { id: "chanson5", titre: "Josie", image: "e.jpg", yt: "https://www.youtube.com/results?search_query=Josie" },
+      { id: "chanson6", titre: "Disconnected", image: "f.jpg", yt: "https://www.youtube.com/results?search_query=Disconnected" },
+      { id: "chanson7", titre: "Justified Black Eye", image: "g.jpg", yt: "https://www.youtube.com/results?search_query=Justified+Black+Eye" },
+      { id: "chanson8", titre: "Bullion", image: "h.jpg", yt: "https://www.youtube.com/results?search_query=bullion+millencolin", guitar: "https://www.youtube.com/watch?v=YYHgDrfAiiM", bass: "https://www.youtube.com/watch?v=haodLbIqMY4" },
+      { id: "chanson9", titre: "Fuck Authority", image: "i.jpg", yt: "https://www.youtube.com/results?search_query=Fuck+Authority" },
+      { id: "chanson10", titre: "Don't Call Me White", image: "j.jpg", yt: "https://www.youtube.com/results?search_query=Don't+Call+Me+White" },
+      { id: "chanson11", titre: "Dig Up Her Bones", image: "k.jpg", yt: "https://www.youtube.com/results?search_query=Dig+Up+Her+Bones" },
+      { id: "chanson12", titre: "Salvation", image: "l.jpg", yt: "https://www.youtube.com/results?search_query=Salvation" },
+      { id: "chanson13", titre: "Ruby Soho", image: "m.jpg", yt: "https://www.youtube.com/results?search_query=Ruby+Soho" },
+      { id: "chanson14", titre: "Time Bomb", image: "n.jpg", yt: "https://www.youtube.com/results?search_query=Time+Bomb" },
+      { id: "chanson15", titre: "Hero", image: "o.jpg", yt: "https://www.youtube.com/results?search_query=Hero" },
+      { id: "chanson16", titre: "Machinehead", image: "p.jpg", yt: "https://www.youtube.com/results?search_query=Machinehead" },
+      { id: "chanson17", titre: "In Bloom", image: "q.jpg", yt: "https://www.youtube.com/results?search_query=In+Bloom" },
+      { id: "chanson18", titre: "I'm Not Afraid", image: "r.jpg", yt: "https://www.youtube.com/results?search_query=I'm+Not+Afraid" },
+      { id: "chanson19", titre: "Die Die, My Darling", image: "s.jpg", yt: "https://www.youtube.com/results?search_query=Die+Die,+My+Darling" },
+      { id: "chanson20", titre: "Mouth for War", image: "t.jpg", yt: "https://www.youtube.com/results?search_query=Mouth+for+War" },
+      { id: "chanson21", titre: "Unknown Road", image: "u.jpg", yt: "https://www.youtube.com/results?search_query=Unknown+Road" },
+      { id: "chanson22", titre: "This is the End", image: "v.jpg", yt: "https://www.youtube.com/results?search_query=This+is+the+End" },
+      { id: "chanson23", titre: "Ready to Fall", image: "w.jpg", yt: "https://www.youtube.com/results?search_query=Ready+to+Fall" },
+      { id: "chanson24", titre: "American Jesus", image: "x.jpg", yt: "https://www.youtube.com/results?search_query=American+Jesus" },
+      { id: "chanson25", titre: "Stickin In my Eye", image: "y.jpg", yt: "https://www.youtube.com/results?search_query=Stickin+In+my+Eye" },
+      { id: "chanson26", titre: "Los Angeles is Burning", image: "z.jpg", yt: "https://www.youtube.com/results?search_query=Los+Angeles+is+Burning" },
 
     ];
 
@@ -301,7 +444,7 @@ body::before {
       chanson5: "Josie\n\nYeah, my girlfriend \nTakes me home when I'm too drunk to drive \nAnd she doesn't get all jealous \nWhen I hang out with the guys \nShe laughs at my dumb jokes when no one does \nShe brings me Mexican food from Sombrero's just because \nYeah, just because \n\nAnd my girlfriend \nLikes UL and DHC \nAnd she's so smart and independent \nI don't think she needs me \nQuite half as much as I know I need her \nI wonder why there's not another \nGuy, that she'd prefer \n\nAnd when I feel like giving up \nLike my world is falling down \nI show up at 3:00 a.m. \nShe's still up watching Vacation \nAnd I see her pretty face \nIt takes me away to a better place and \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \n\nYeah, my girlfriend \nTakes collect calls from the road \nAnd it doesn't seem to matter \nThat I'm lacking in the bulge \nShe laughs at my dumb jokes when no one does \nShe brings me Mexican food from Sombrero's just because \n\nAnd when I feel like giving up \nLike my world is falling down \nI show up at 3:00 a.m. \nShe's still up watching Vacation \nAnd I see her pretty face \nIt takes me away to a better place and \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine \n\nI know that everything \nKnow that everything \nKnow that everything \nEverything's gonna be fine (x4)",
       chanson6: "Disconnected\n\nYou don't know a thing about me\nIs there something that you should know?\nI can tell you what you want to hear\nLet your inhibitions just go, go\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you\n\nTrust is something that comes easy\nWhen you've never been a victim\nLies and promises and words are said\nIt's your decision to accept them, accept them\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you, to you\n\nNo, you don't know what you will give up\nNo, you don't know what you will give up\nYou don't know what you want\nIt may take you years to find out\nYou don't know what you need\nSomething that may never come to you\nSomething that may never come to you\n\nSomething that may never come\nMay never come, may never come, may never come\nMay never come, never come, never come to you",
       chanson7: "Justified Black Eye\n\nShe was confused and abused in this life\nEmotional and violent moments\nSeemed to take the longest time\nEvery single knockout drag-out fight they ever had\nApologies and dignity denied\n\nHe starts to laugh\nHe starts to lie\nWith suddenly psychotic eyes\nEvery night she cried herself to sleep\nShe didn't recognize\nHer own face in the mirror\nBlack and blue\nSo afraid, intimidation, like a child she hides away\nHe would always try to justify what wasn't true\n\nJustified black eye\n\nTaken for granted\nShe sleeps by the phone\nWaiting for a call from him\nBut it seems he's never coming home\n14 beers later he is there without an answer\nOnce again she questions his lies\nHe goes to bed with no reply\nTomorrow morning different story and he'll be a different guy\nHe'll justify her black eye with another lie\n\nShe packs her bags in great temptation\nHe's on his knees\nAgain he cries\nA hug and a kiss and I don't know why\nAs a tear drops from her swollen eye\nApologies until tonight and another justified black eye\n\nJustified black eye",
-      chanson8: "I Want to be Wrong\n\nLet me introduce myself, my name is no concern \n The room is filled with superficial voices \n As the smoke clears I can see one hundred little lies\nRacing to the finish for a consolation prize \n\n I want to be wrong \nI wish that I was uncertain just like yesterday\nThis is not who I am, been planning my escape\nSo long now that my map looks like a maze\n\nAlways on the dark side of a pessimistic moon\n Or burning in the sun of what they're saying \nIf you have the foresight can you read between the lines?\nFinger two and four inviting fingers one and five \nTo be in this song, it's nothing I can shut off \nBut I think it's my place \nTo let you know I know that all your plans are fake \nAnd what you give me I could never take \n\nAre you confusing me with someone else you hardly even know? \nI'm sitting here observing and more often I am learning \nThat you are an artist and this is your show... so sing it \n\nI want to be wrong but what did i really think\nThat this could become real?\nNow writing in cliches to learn from my mistakes\nBut how much of you could anyone take?",
+      chanson8: "Bullion\n\n21, feeling down\nI tell you nothing with a thousand words and I\nWeaker get with every step\nI waste my time on compact discs and stale fish\n\nI can't remember the last time I did something\nThat made me feel alright for longer than a few hours\nIf I only had the strength to make some muffins\nThen I swear that I would share them with you now\n\nAm I odd or am I not?\nThat's the question I spend time analysing\nI'm so soft but still I'm not\nLiving up to what people want me to be\n\n'Cause I'm busy with me, myself and I can't\nBe understood by someone I don't know too well\nSo I'm shutting out the whole world just to play Nintendo\nI've got these new games, but I'm afraid you can't join me\n\nThese last few years I've been struggling\nAnd I'm tired of keeping a low profile\nSo now it's time to show that I'm alive\n\nI'm gonna change my life\nChange my plans, change my Vans\nEven start to dance now\nChange my thoughts, change my socks\nChange my moves\nEven change my Pro Fighter Q for you\n\nNo, it's not for you\nAnd change mine just for me\nChange mine just for me\nBullion",
       chanson9: "Fuck Authority\n\nSomeday you gotta find another way\nYou better right your mind and live by what you say\nToday is just another day\nUnless you set your sights and try to find a way\n\nI say fuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nAnd we're never ever gonna stop, stop trying\nStop trying, stop trying, stop trying\n\nYou know the time is right to take control\nWe got to take offense against the status quo\nNo way, not gonna stand for it today\nFight for your rights, it's time we had our say\n\nI say fuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nWe're sick and tired of relentless lying\nDestroy, enjoy, your fuckin' world is our new toy\nDominate, eliminate\nYou're gonna feel the wrath, wrath of hate\n\nFuck authority\nSilent majority\nRaised by the system\nNow it's time to rise against them\nWe're sick of your treason\nSick of your lies\nFuck no, we won't listen\nWe're gonna open your eyes\n\nFrustration, domination\nFeel the rage of a new generation\nWe're living, we're dying\nAnd we're never ever gonna stop, stop trying\nStop trying, stop trying, stop trying",
       chanson10: "Don't Call Me White\n\nDon't call me white, don't call me white\nDon't call me white, don't call me white\nThe connotations wearing my nerves thin\nCould it be semantics generating the mess we're in? \n\nI understand that language breeds stereotype\nBut what's the explanation for the malice, for the spite? \nDon't call me white, don't call me white\nDon't call me white, don't call me white\nI wasn't brought here, I was born\nCircumcised, categorized, allegiance sworn\nDoes this mean I have to take such shit\nFor being fair skinned? No! \n\nI ain't a part of no conspiracy, I'm just you're average joe\nDon't call me white, don't call me white\nDon't call me white, don't call me white\nRepresents everything I hate\nThe soap shoved in the mouth to cleanse the mind\nThe vast majority of sheep\n\nA buttoned collar, starched and bleached\nConstricting veins, the blood flow to the brain slows\nThey're so fuckin ordinary white\nDon't call me white, don't call me white\nDon't call me white, don't call me white\nOh, we're better off this way? \nOh, say what you're gonna say\n\nSo go ahead and label me an asshole\n'cause I can\nAccept responsibility for what I've done\nBut not for who I am\nDon't call me white, don't call me white\nDon't call me white, don't call me white",
       chanson11: "Dig Up Her Bones\n\nAnything is what she is\nAnywhere is where she's from\nAnything is what she'll be\nAnything as long as it's mine\nAnd the door it opened a way back in\nOr is it way back out? \n\nAny place is where she'll be\nAny place she'll see you from\nLies and secrets become your world\nAnytime, anywhere, she takes me away\nAnd death climbs up the steps one by one\nTo give you the rose that's been burned by her son\n\nPoint me to the sky above\nI can't get there on my own\nWalk me to the graveyard\nDig up her bones\n\nI have seen the demon's face\nI have heard of her death place\nI fall down on my knees\nAnd praised the ground\nHorrible things that took her away\nAnd death climbs up the steps one by one\nTo give you the rose that's been burned by her son\n\nPoint me to the sky above\nI can't get there on my own\nWalk me to the graveyard\nDig up her bones\nPoint me to the sky above\nI can't get there on my own\nWalk me to the graveyard\nDig up her bones\nBones",
@@ -325,18 +468,33 @@ body::before {
 
     const grid = document.getElementById("grid");
 
-    chansons.forEach(c => {
+    chansons.forEach((c, index) => {
       const div = document.createElement("div");
       div.className = "card";
-      div.innerHTML = `<img src="${c.image}"><p>${c.titre}</p>`;
+      div.innerHTML = `
+  <span class="album-number">${index + 1}</span>
+  <img src="${c.image}">
+  <p>${c.titre}</p>
+`;
       div.onclick = () => {
         const lyricsDiv = document.getElementById("lyrics");
         lyricsDiv.textContent = paroles[c.id];
+        document.getElementById("ytLink").href = c.yt || "#";
+        document.getElementById("guitarLink").href = c.guitar || "#";
+        document.getElementById("bassLink").href = c.bass || "#";
+        document.getElementById("guitarLink").href =
+          c.guitar || ('https://www.youtube.com/results?search_query=' + encodeURIComponent(c.titre + ' guitar tab'));
+        document.getElementById("bassLink").href =
+          c.bass || ('https://www.youtube.com/results?search_query=' + encodeURIComponent(c.titre + ' bass tab'));
 
         // Scroll automatique vers les paroles
-        lyricsDiv.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          document.querySelector(".lyrics-section").scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 50);
 
-        // Affiche le bouton
         backToTopBtn.style.display = "inline-block";
       };
       grid.appendChild(div);
