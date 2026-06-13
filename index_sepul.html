@@ -155,7 +155,90 @@
       opacity: 0.4;
     }
 
-  </style>
+  
+/* ===== PLAYLIST ICON ===== */
+.playlist-icon{
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  font-size:0.7em;
+  margin-left:8px;
+  transition:.25s;
+}
+.playlist-icon:hover{
+  color:#00ff99;
+  text-shadow:0 0 10px #00ff99;
+}
+
+/* ===== LINKS BESIDE LYRICS ===== */
+.lyrics-wrapper{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:30px;
+}
+
+.media-links{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+}
+
+.media-links a{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+  border-radius:10px;
+  transition:all .25s ease;
+}
+
+.media-links a:hover{
+  transform:scale(1.12);
+}
+
+#ytLink{
+  background:#ff003c;
+  box-shadow:0 0 15px #ff003c;
+}
+
+#guitarLink{
+  background:#00cc66;
+  box-shadow:0 0 15px #00cc66;
+}
+
+#bassLink{
+  background:#0080ff;
+  box-shadow:0 0 15px #0080ff;
+}
+
+/* ===== POCHETTE NUMBER ===== */
+.album-number{
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:rgba(0,0,0,.45);
+  color:rgba(255,255,255,.85);
+  font-size:11px;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.15);
+  z-index:5;
+}
+
+</style>
 </head>
 
 <body>
@@ -163,8 +246,10 @@
   <a href="index.html" class="secret-link">Principal</a>
 
   <div class="header">
-    <div class="logo-img">
+    <div class="overlay">
+      <div class="logo-img">
       <img src="logo.png" alt="logo">
+      </div>
     </div>
 
     <h1 class="logo">
@@ -174,12 +259,19 @@
     <p class="tagline">Groupe hommage</p>
   </div>
 
-  <div class="grid" id="grid"></div>
-<br>
-<br>
+  <div class="grid" id="grid"></div><br>
+  <div class="lyrics-section">
+  <div class="lyrics-wrapper">
+  
+  <div class="media-links">
+    <a id="ytLink" target="_blank" href="#" title="YouTube">YT</a>
+    <a id="guitarLink" target="_blank" href="#" title="Tablature guitare">GT</a>
+    <a id="bassLink" target="_blank" href="#" title="Tablature basse">BS</a>
+  </div>
   <div id="lyrics" class="lyrics"></div>
+</div>
 
-  <button id="backToTop">⬆ Retour en haut</button>
+   <button id="backToTop">⬆ Retour en haut</button>
 
   <script>
     const backToTopBtn = document.getElementById("backToTop");
@@ -189,7 +281,7 @@
     };
 
     const chansons = [
-      { id: "chanson1", titre: "C.I.U. (Criminals in Uniform)", image: "sb.jpg" },
+      { id: "chanson1", titre: "C.I.U. (Criminals in Uniform)", image: "sb.jpg", yt: "https://www.youtube.com/watch?v=wj33cK3MrKI", guitar: "https://www.songsterr.com/a/wsa/sepultura-desperate-cry-solo-tab-s18143t1", bass: "https://www.songsterr.com/?pattern=Linoleum+bass" },
       { id: "chanson2", titre: "Orgasmatron", image: "sb.jpg" },
       { id: "chanson3", titre: "Arise", image: "sc.jpg" },
       { id: "chanson4", titre: "Dead Embryonic Cells", image: "sc.jpg" },
@@ -249,14 +341,18 @@
 
     const grid = document.getElementById("grid");
 
-    chansons.forEach(c => {
+    chansons.forEach((c, index) => {
       const div = document.createElement("div");
       div.className = "card";
-      div.innerHTML = `<img src="${c.image}"><p>${c.titre}</p>`;
+      div.innerHTML = `<span class="album-number">${index + 1}</span><img src="${c.image}"><p>${c.titre}</p>`;
 
       div.onclick = () => {
         const lyricsDiv = document.getElementById("lyrics");
         lyricsDiv.textContent = paroles[c.id];
+
+        document.getElementById("ytLink").href = c.yt || "#";
+        document.getElementById("guitarLink").href = c.guitar || "#";
+        document.getElementById("bassLink").href = c.bass || "#";
 
         lyricsDiv.scrollIntoView({ behavior: "smooth" });
         backToTopBtn.style.display = "inline-block";
